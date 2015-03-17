@@ -1,3 +1,4 @@
+var fs = require('fs');
 var express = require('express');
 var bodyParser = require('body-parser');
 var s3 = require('./routes/s3/route_s3');
@@ -23,6 +24,13 @@ app.use(function (req, res, next) {
 
     // Pass to next layer of middleware
     next();
+});
+
+app.use(function(req, res, next) {
+  if (req.url === '/') {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    fs.createReadStream(__dirname + '/assets/index_s3.html').pipe(res);
+  }
 });
 
 app.use('/upload', s3);
