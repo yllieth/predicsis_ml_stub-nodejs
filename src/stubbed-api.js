@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser   = require('body-parser');
+var fs           = require('fs');
 var users        = require('./routes/api/route_users');
 var projects     = require('./routes/api/route_projects');
 var datasets     = require('./routes/api/route_datasets');
@@ -58,6 +59,13 @@ app.use(function (req, res, next) {
 
     // Pass to next layer of middleware
     next();
+});
+
+app.use(function(req, res, next) {
+  if (req.url === '/') {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    fs.createReadStream(__dirname + '/assets/index_api.html').pipe(res);
+  }
 });
 
 app.use('/users', users);

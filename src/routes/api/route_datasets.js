@@ -255,19 +255,6 @@ var datasetList = {
 };
 var dataset = {dataset: datasetList.datasets[0]};
 
-/**
- * Supported requests:
- *
- * GET    /datasets/:id   :: Get specific dataset
- * GET    /datasets       :: Get all dataset related to the logged user
- * POST   /datasets       :: Create new dataset from an existing source
- * POST   /datasets       :: Apply a model to start scoring a file
- * PATCH  /datasets/:id   :: Update an existing dataset
- * DELETE /datasets/:id   :: Remove an existing dataset
- *
- * ============================================================================
- */
-
 router.get('/', function(req, res) {
   res.status(200).json(datasetList);
 });
