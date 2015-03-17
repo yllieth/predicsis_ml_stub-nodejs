@@ -1,5 +1,6 @@
-var express = require('express');
+var fs = require('fs');
 var path = require('path');
+var express = require('express');
 var bodyParser = require('body-parser');
 var proxyOAuth = require('./routes/oauth/route_proxy_oauth.js');
 var publicDir = path.resolve(__dirname, '../..');
@@ -25,6 +26,13 @@ if (needCover) {
 if (!needCover) {
     console.log('Coverage NOT turned on, run with --coverage to turn it on');
 }
+
+app.use(function(req, res, next) {
+  if (req.url === '/') {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    fs.createReadStream(__dirname + '/assets/index_idproxy.html').pipe(res);
+  }
+});
 
 app.use('/oauth', proxyOAuth);
 
