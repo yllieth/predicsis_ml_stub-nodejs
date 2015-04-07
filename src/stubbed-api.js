@@ -65,6 +65,8 @@ app.use(function(req, res, next) {
   if (req.url === '/') {
     res.writeHead(200, {'Content-Type': 'text/html'});
     fs.createReadStream(__dirname + '/assets/index_api.html').pipe(res);
+  } else {
+    next();
   }
 });
 

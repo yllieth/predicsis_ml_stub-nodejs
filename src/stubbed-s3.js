@@ -30,6 +30,8 @@ app.use(function(req, res, next) {
   if (req.url === '/') {
     res.writeHead(200, {'Content-Type': 'text/html'});
     fs.createReadStream(__dirname + '/assets/index_s3.html').pipe(res);
+  } else {
+    next();
   }
 });
 
