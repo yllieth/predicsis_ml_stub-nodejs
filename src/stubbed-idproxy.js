@@ -1,31 +1,27 @@
 var fs = require('fs');
-var path = require('path');
 var express = require('express');
-var bodyParser = require('body-parser');
 var proxyOAuth = require('./routes/oauth/route_proxy_oauth.js');
-var publicDir = path.resolve(__dirname, '../..');
-var url = require('url');
-
-var nopt = require('nopt');
-var config = nopt({ coverage: Boolean });
-var coverage = require('istanbul-middleware');
-var needCover = config.coverage;
-
 
 var app = express();
 
-function matcher(req) {
-    var parsed = url.parse(req.url);
-    return parsed.pathname && parsed.pathname.match(/\.js$/) && !parsed.pathname.match(/vendor/) && !parsed.pathname.match(/locales/);
-}
+app.use(function (req, res, next) {
 
-if (needCover) {
-    console.log('Turning on coverage; ensure this is not production');
-    coverage.hookLoader(function(filePath){return false;});
-}
-if (!needCover) {
-    console.log('Coverage NOT turned on, run with --coverage to turn it on');
-}
+  // Website you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', process.env.PREDICSIS_STUBAPI_ORIGINS || 'http://localhost:8002');
+
+  // Request methods you wish to allow
+  res.setHeader('Access-Control-Allow-Methods', process.env.PREDICSIS_STUBAPI_METHODS || 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+  // Request headers you wish to allow
+  res.setHeader('Access-Control-Allow-Headers', process.env.PREDICSIS_STUBAPI_HEADERS || 'x-from-state,content-type,authorization,cache-control,x-requested-with,x-mock-response,x-body-sent');
+
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader('Access-Control-Allow-Credentials', process.env.PREDICSIS_STUBAPI_CREDENTIALS || true);
+
+  // Pass to next layer of middleware
+  next();
+});
 
 app.use(function(req, res, next) {
   if (req.url === '/') {
@@ -37,14 +33,5 @@ app.use(function(req, res, next) {
 });
 
 app.use('/oauth', proxyOAuth);
-
-if (needCover) {
-    console.log('Turn on coverage reporting at /coverage');
-    app.use('/coverage', coverage.createHandler({ verbose: true, resetOnGet: true }));
-    app.use(coverage.createClientHandler(publicDir, { matcher: matcher }));
-}
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(express.static(publicDir));
 
 module.exports = app;
