@@ -10,7 +10,8 @@ var jobs         = require('./routes/api/route_jobs');
 var sources      = require('./routes/api/route_sources');
 var modalities_sets = require('./routes/api/route_modalities_sets');
 var preparation_rules_sets = require('./routes/api/route_preparation_rules_sets');
-var reports = require('./routes/api/route_reports');
+var reports      = require('./routes/api/route_reports');
+var settings     = require('./routes/api/route_settings');
 
 var app = express();
 
@@ -71,6 +72,11 @@ app.use(function(req, res, next) {
   }
 });
 
+app.use(function(req, res, next) {
+  console.log('> ' + req.method + ' ' + req.originalUrl);
+  next();
+});
+
 app.use('/users', users);
 app.use('/projects', projects);
 app.use('/datasets', datasets);
@@ -81,5 +87,6 @@ app.use('/preparation_rules_sets', preparation_rules_sets);
 app.use('/sources', sources);
 app.use('/models', models);
 app.use('/reports', reports);
+app.use('/settings', settings);
 
 module.exports = app;
