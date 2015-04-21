@@ -1,13 +1,13 @@
 {
   "name": "predicsis_ml_stub-nodejs",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "homepage": "https://github.com/yllieth/predicsis_ml_stub-nodejs",
   "authors": [
     "yllieth <sylvnimes@hotmail.com>"
   ],
   "description": "Stub server for PredicSis ML API",
   "license": "MIT",
-  "private": true,
+  "private": false,
   "ignore": [
     "**/.*",
     "node_modules",
