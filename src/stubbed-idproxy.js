@@ -32,6 +32,11 @@ app.use(function(req, res, next) {
   }
 });
 
+app.use(function(req, res, next) {
+  console.log('> ' + req.method + ' ' + req.originalUrl);
+  next();
+});
+
 app.use('/oauth', proxyOAuth);
 
 module.exports = app;
