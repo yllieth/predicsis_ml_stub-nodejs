@@ -23,11 +23,9 @@
     "grunt": "^0.4.5",
     "grunt-cli": "^0.1.13",
     "grunt-express": "^1.4.1",
-    "istanbul-middleware": "^0.2.0",
     "load-grunt-tasks": "^3.1.0",
     "lodash": "^3.5.0",
     "lodash-contrib": "^241.4.14",
-    "nopt": "^3.0.1",
     "object-to-xml": "0.0.2"
   }
 }
