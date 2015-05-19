@@ -42,6 +42,8 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('default', ['express', 'express-keepalive']);
+  grunt.registerTask('serve', ['express', 'express-keepalive']);
+
+  grunt.registerTask('default', 'serve');
 
 };
