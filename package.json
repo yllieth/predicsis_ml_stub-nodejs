@@ -16,7 +16,7 @@
     "url": "https://github.com/yllieth/predicsis_ml_stub-nodejs/issues"
   },
   "homepage": "https://github.com/yllieth/predicsis_ml_stub-nodejs",
-  "devDependencies": {
+  "dependencies": {
     "body-parser": "^1.12.2",
     "chalk": "^1.0.0",
     "debug": "^2.1.3",
