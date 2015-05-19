@@ -145,7 +145,7 @@ var datasetList = {
       created_at: '2014-12-18T15:09:08.112Z',
       updated_at: '2014-12-18T15:12:48.082Z',
       name: 'Learning dataset (test failure on dataset deletion)',
-      header: true,
+      header: false,
       separator: '\t',
       user_id: '541b06dc617070006d060000',
       source_ids: ['54904b136170700007330000'],

@@ -36,19 +36,25 @@ var projectList = {
     id: 'upload',
     created_at: '2014-05-02T15:21:27.817Z',
     updated_at: '2014-05-02T15:21:27.817Z',
-    title: 'Project 1',
+    title: 'Demo project during dev',
+    main_modality: null,
     user_id: '5363b25c687964476d000000',
     learning_dataset_id: null,
     dictionary_id: null,
     scoreset_ids: [],
     scoring_dataset_ids: [],
     classifier_id: null,
+    preparation_rules_set_id: null,
+    modalities_set_id: null,
+    report_ids: null,
+    target_variable_id: null,
     is_dictionary_verified: null
   }, {
     id: 'learn-config',
     created_at: '2014-05-02T15:21:27.817Z',
     updated_at: '2014-05-02T15:21:27.817Z',
     title: 'Project 1',
+    main_modality: null,
     user_id: '5363b25c687964476d000000',
     learning_dataset_id: 'learning_dataset_with_model',
     dictionary_id: '5469b18470632d1479020001',
@@ -56,12 +62,16 @@ var projectList = {
     scoring_dataset_ids: ['scoring_dataset'],
     report_ids: ['train_classifier_evaluation', 'test_classifier_evaluation', 'univariate_supervised'],
     classifier_id: null,
+    preparation_rules_set_id: null,
+    modalities_set_id: null,
+    target_variable_id: null,
     is_dictionary_verified: null
   }, {
     id: 'model_overview',
     created_at: '2014-05-02T15:21:27.817Z',
     updated_at: '2014-05-02T15:21:27.817Z',
     title: 'Project 2',
+    main_modality: null,
     user_id: '5363b25c687964476d000000',
     learning_dataset_id: 'learning_dataset_with_model',
     dictionary_id: '5469b18470632d1479020001',
@@ -78,6 +88,7 @@ var projectList = {
     created_at: '2014-05-02T15:21:27.817Z',
     updated_at: '2014-05-02T15:21:27.817Z',
     title: '',
+    main_modality: null,
     user_id: '5363b25c687964476d000000',
     learning_dataset_id: 'learning_dataset_with_model',
     dictionary_id: '5469b18470632d1479020001',
@@ -94,6 +105,7 @@ var projectList = {
     created_at: '2014-05-02T15:21:27.817Z',
     updated_at: '2014-05-02T15:21:27.817Z',
     title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mi nibh, sodales consectetur diam eu, malesuada convallis ante. Nullam bibendum, sapien sit amet gravida congue, ex dui suscipit magna, sit amet tempor magna arcu id metus. Aenean convallis nisl at odio facilisis, id hendrerit lectus mattis.',
+    main_modality: null,
     user_id: '5363b25c687964476d000000',
     learning_dataset_id: 'learning_dataset_with_model',
     dictionary_id: '5469b18470632d1479020001',
@@ -110,6 +122,7 @@ var projectList = {
     created_at: '2014-05-02T15:21:27.817Z',
     updated_at: '2014-05-02T15:21:27.817Z',
     title: 'One more, just for fun!!',
+    main_modality: null,
     user_id: '5363b25c687964476d000000',
     learning_dataset_id: 'learning_dataset_with_model',
     dictionary_id: '5469b18470632d1479020001',
@@ -173,8 +186,24 @@ router.get('/:id', function(req, res) {
   res.status(200).json(answer);
 });
 
+// patches will be "persited" in memory
 router.patch('/:id', function(req, res) {
-  res.status(200).json(project);
+  var result;
+
+  projectList.projects.forEach(function(p) {
+    if (p.id === req.params.id) {
+      result = p;
+      return true;
+    }
+  });
+
+  for (var i in req.body.project) {
+    if (result.hasOwnProperty(i)) {
+      result[i] = req.body.project[i];
+    }
+  }
+
+  res.status(200).json({ project: result});
 });
 
 router.delete('/:id', function(req, res) {
@@ -185,7 +214,6 @@ router.delete('/:id', function(req, res) {
   }
 });
 
-// CREATE: add new project to the list
 router.post('/', function(req, res) {
   var title = _.getPath(req, 'body.project.title');
   var newProject = projectList.projects[0];

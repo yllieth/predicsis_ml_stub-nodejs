@@ -15,7 +15,9 @@ var dictionary = {
     'user_id': '5363b25c687964476d000000',
     'dataset_id': '53c7dea470632d3417020000',
     'variable_ids': [
-
+      '5469ce4f776f7200010b0000',
+      '5469ce4f776f7200010c0000',
+      '5469ce4f776f7200010d0000'
     ],
     'job_ids': [
       'first',
@@ -73,6 +75,10 @@ var variable = {
   }
 };
 
+router.get('/:dictionaryId', function(req, res) {
+  res.status(200).json(dictionary);
+});
+
 router.post('/', function(req, res) {
   var answer = JSON.parse(JSON.stringify(dictionary));
   var status = 201;
@@ -104,7 +110,16 @@ router.get('/:dictionaryId/variables', function(req, res) {
 });
 
 router.get('/:dictionary_id/variables/:variable_id', function(req, res) {
-  res.status(200).json(variable);
+  var result = {};
+
+  variables.variables.forEach(function(p) {
+    if (p.id === req.params.variable_id) {
+      result = p;
+      return true;
+    }
+  });
+
+  res.status(200).json({variable: result});
 });
 
 router.patch('/:dictionary_id/variables/:variable_id', function(req, res) {

@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser   = require('body-parser');
 var fs           = require('fs');
+var chalk        = require('chalk');
 var users        = require('./routes/api/route_users');
 var projects     = require('./routes/api/route_projects');
 var datasets     = require('./routes/api/route_datasets');
@@ -72,9 +73,28 @@ app.use(function(req, res, next) {
   }
 });
 
+// Console output
 app.use(function(req, res, next) {
-  console.log('> ' + req.method + ' ' + req.originalUrl);
+  if (req.method !== 'OPTIONS') {
+    if      (req.method === 'GET')    { console.log('>    ' + chalk.green(req.method) + ' ' + req.originalUrl); }
+    else if (req.method === 'POST')   { console.log('>   ' + chalk.blue(req.method)   + ' ' + req.originalUrl); }
+    else if (req.method === 'PATCH')  { console.log('>  ' + chalk.magenta(req.method) + ' ' + req.originalUrl); }
+    else if (req.method === 'DELETE') { console.log('> ' + chalk.grey(req.method)     + ' ' + req.originalUrl); }
+    else                              { console.log('> ' + req.method + ' ' + req.originalUrl); }
+  }
+
   next();
+});
+
+app.use(function(req, res, next) {
+  if (req.method !== 'OPTIONS' && req.headers.authorization === 'Bearer no-token-defined') {
+    res.status(401).send({
+      status: 401,
+      message: "Invalid token"
+    })
+  } else {
+    next();
+  }
 });
 
 app.use('/users', users);
