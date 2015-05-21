@@ -287,12 +287,20 @@ router.post('/', function(req, res) {
     if(req.body.dataset.dataset_id === 'fail') {
       res.status(500).send();
     } else {
+      dataset = JSON.parse(JSON.stringify(dataset));
       dataset.dataset.classifier_id = '5436431070632d15f4260000';
       dataset.dataset.dataset_id = '53a492e870632d6ec1000000';
 
       setTimeout(function() { res.status(201).json(dataset); }, 2000);
     }
   } else {
+    dataset = JSON.parse(JSON.stringify(dataset));
+    dataset.dataset.id = 'uploadedDataset';
+    dataset.dataset.name = req.body.dataset.name;
+    dataset.dataset.created_at = new Date().toISOString();
+    dataset.dataset.data_file.filename = req.body.dataset.name;
+    dataset.dataset.data_file.size = 235666;
+
     //create a dataset
     res.status(201).json(dataset);
   }
