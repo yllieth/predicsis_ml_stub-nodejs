@@ -253,14 +253,14 @@ var datasetList = {
     }
   ]
 };
-var dataset = {dataset: datasetList.datasets[0]};
+var _dataset = {dataset: datasetList.datasets[0]};
 
 router.get('/', function(req, res) {
   res.status(200).json(datasetList);
 });
 
 router.get('/:id', function(req, res) {
-  var answer = JSON.parse(JSON.stringify(dataset));
+  var answer = JSON.parse(JSON.stringify(_dataset));
   if(req.params.id === 'jobFail') {
     answer.dataset.id = 'jobFail';
   } else if (req.params.id === '42') {
@@ -278,23 +278,22 @@ router.get('/:id', function(req, res) {
   } else if(req.params.id === 'scoreset') {
     answer = {dataset: datasetList.datasets[6]};
   }
+
   res.status(200).json(answer);
 });
 
 router.post('/', function(req, res) {
+  var dataset = JSON.parse(JSON.stringify(_dataset));
   if(req.body.dataset.dataset_id) {
     //apply a model
     if(req.body.dataset.dataset_id === 'fail') {
       res.status(500).send();
     } else {
-      dataset = JSON.parse(JSON.stringify(dataset));
       dataset.dataset.classifier_id = '5436431070632d15f4260000';
       dataset.dataset.dataset_id = '53a492e870632d6ec1000000';
-
       setTimeout(function() { res.status(201).json(dataset); }, 2000);
     }
   } else {
-    dataset = JSON.parse(JSON.stringify(dataset));
     dataset.dataset.id = 'uploadedDataset';
     dataset.dataset.name = req.body.dataset.name;
     dataset.dataset.created_at = new Date().toISOString();
@@ -306,6 +305,7 @@ router.post('/', function(req, res) {
 });
 
 router.patch('/:id', function(req, res) {
+  var dataset = JSON.parse(JSON.stringify(_dataset));
   if(req.body.dataset.separator === ',') {
     res.status(422).json({error: {
       message: 'Wrong separator or the dataset does not have at least 2 columns.',
