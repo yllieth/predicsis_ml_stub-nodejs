@@ -298,8 +298,7 @@ router.post('/', function(req, res) {
     dataset.dataset.id = 'uploadedDataset';
     dataset.dataset.name = req.body.dataset.name;
     dataset.dataset.created_at = new Date().toISOString();
-    dataset.dataset.data_file.filename = req.body.dataset.name;
-    dataset.dataset.data_file.size = 235666;
+    delete dataset.dataset.data_file;
 
     //create a dataset
     res.status(201).json(dataset);
