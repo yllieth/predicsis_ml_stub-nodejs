@@ -32,8 +32,16 @@ app.use(function(req, res, next) {
   }
 });
 
+// Console output
 app.use(function(req, res, next) {
-  console.log('> ' + req.method + ' ' + req.originalUrl);
+  if (req.method !== 'OPTIONS') {
+    if      (req.method === 'GET')    { console.log('>    ' + chalk.green(req.method) + ' ' + req.originalUrl); }
+    else if (req.method === 'POST')   { console.log('>   ' + chalk.blue(req.method)   + ' ' + req.originalUrl); }
+    else if (req.method === 'PATCH')  { console.log('>  ' + chalk.magenta(req.method) + ' ' + req.originalUrl); }
+    else if (req.method === 'DELETE') { console.log('> ' + chalk.grey(req.method)     + ' ' + req.originalUrl); }
+    else                              { console.log('> ' + req.method + ' ' + req.originalUrl); }
+  }
+
   next();
 });
 
