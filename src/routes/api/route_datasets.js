@@ -256,7 +256,7 @@ var datasetList = {
 var _dataset = {dataset: datasetList.datasets[0]};
 
 router.get('/', function(req, res) {
-  res.status(200).json(datasetList);
+  setTimeout(function() {res.status(200).json(datasetList);}, 2000);
 });
 
 router.get('/:id', function(req, res) {
@@ -297,7 +297,6 @@ router.post('/', function(req, res) {
     dataset.dataset.id = 'uploadedDataset';
     dataset.dataset.name = req.body.dataset.name;
     dataset.dataset.created_at = new Date().toISOString();
-    delete dataset.dataset.data_file;
 
     //create a dataset
     res.status(201).json(dataset);
