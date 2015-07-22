@@ -9,11 +9,11 @@ var _ = require('lodash-contrib');
 router.post('/', function(req, res) {
   var name = _.getPath(req, 'body.user.name');
   if ('fail' === name) {
-    res.json(504, {
+    res.status(504).json({
       msg: 'fake server refused the request because name was : ' + name,
     });
   } else {
-    res.json(200, {
+    res.status(200).json({
       'user': {
         'id': '5347b31750432d45a5020000',
         'created_at': '2014-07-18T06:40:20.845Z',
@@ -26,7 +26,7 @@ router.post('/', function(req, res) {
 });
 
 router.get('/me', function(req, res) {
-  res.json(200, {
+  res.status(200).json({
     'user': {
       'id': '5347b31750432d45a5020000',
       'created_at': '2014-07-18T06:40:20.845Z',
@@ -55,7 +55,7 @@ router.post('/password', function(req, res) {
     }
   }
   else {
-    res.json(422, {"message":"Parameter is required","status":422});
+    res.status(422).json({"message":"Parameter is required","status":422});
   }
 });
 
