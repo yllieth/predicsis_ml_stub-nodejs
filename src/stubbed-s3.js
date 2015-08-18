@@ -1,7 +1,7 @@
 var fs = require('fs');
 var express = require('express');
-var s3_upload = require('./routes/s3/route_s3');
-var s3_download = require('./routes/s3/route_s3_download');
+var s3_upload = require('./routes/s3/s3');
+var s3_download = require('./routes/s3/s3_download');
 
 var app = express();
 

@@ -1,7 +1,7 @@
 var fs = require('fs');
 var chalk = require('chalk');
 var express = require('express');
-var proxyOAuth = require('./routes/oauth/route_proxy_oauth.js');
+var proxyOAuth = require('./routes/oauth/proxy_oauth.js');
 
 var app = express();
 

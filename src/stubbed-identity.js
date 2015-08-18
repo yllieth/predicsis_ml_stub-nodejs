@@ -1,7 +1,7 @@
 var fs = require('fs');
 var express = require('express');
 var bodyParser = require('body-parser');
-var identityOauth = require('./routes/identity/route_identity_oauth.js');
+var identityOauth = require('./routes/identity/identity_oauth.js');
 
 
 var app = express();
