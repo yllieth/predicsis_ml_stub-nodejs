@@ -5,7 +5,7 @@ var express = require('express');
 var router = express.Router();
 var S3_URL = 'http://localhost:8005';
 var datasetList = {
-  'datasets': [
+  datasets: [
     {
       // learning dataset (just after upload)
       id: 'learning_dataset',
@@ -261,6 +261,8 @@ router.get('/', function(req, res) {
 
 router.get('/:id', function(req, res) {
   var answer = JSON.parse(JSON.stringify(_dataset));
+  answer.dataset.id = req.param.id;
+
   if(req.params.id === 'jobFail') {
     answer.dataset.id = 'jobFail';
   } else if (req.params.id === '42') {
@@ -284,6 +286,8 @@ router.get('/:id', function(req, res) {
 
 router.post('/', function(req, res) {
   var dataset = JSON.parse(JSON.stringify(_dataset));
+  dataset.dataset.id = '__uploadedDataset';
+
   if(req.body.dataset.dataset_id) {
     //apply a model
     if(req.body.dataset.dataset_id === 'fail') {
@@ -294,7 +298,6 @@ router.post('/', function(req, res) {
       setTimeout(function() { res.status(201).json(dataset); }, 2000);
     }
   } else {
-    dataset.dataset.id = 'uploadedDataset';
     dataset.dataset.name = req.body.dataset.name;
     dataset.dataset.created_at = new Date().toISOString();
 

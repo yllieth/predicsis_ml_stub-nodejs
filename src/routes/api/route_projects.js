@@ -16,8 +16,8 @@ var project = {
     title: 'My project',
     main_modality: '0',
     user_id: '5469b18470632d1479020000',
-    dictionary_id: '5469b18470632d1479020001',
-    target_variable_id: '5469ce4f776f7200010c0000',
+    dictionary_id: '__dictionary-api-contest',
+    target_variable_id: '__variable-target',
     modalities_set_id: '5469b18470632d1479020003',
     preparation_rules_set_id: '5469b18470632d1479020008',
     classifier_id: '5469b18470632d1479020016',
@@ -79,7 +79,7 @@ var projectList = {
     scoring_dataset_ids: ['scoring_dataset'],
     report_ids: ['train_classifier_evaluation', 'test_classifier_evaluation', 'univariate_supervised'],
     classifier_id: '5469b18470632d1479020016',
-    target_variable_id: '5469ce4f776f7200010c0000',
+    target_variable_id: '__variable-target',
     modalities_set_id: '5469b18470632d1479020003',
     preparation_rules_set_id: '5469b18470632d1479020008',
     is_dictionary_verified: true
@@ -96,7 +96,7 @@ var projectList = {
     scoring_dataset_ids: ['scoring_dataset'],
     report_ids: ['train_classifier_evaluation', 'test_classifier_evaluation', 'univariate_supervised'],
     classifier_id: '5469b18470632d1479020016',
-    target_variable_id: '5469ce4f776f7200010c0000',
+    target_variable_id: '__variable-target',
     modalities_set_id: '5469b18470632d1479020003',
     preparation_rules_set_id: '5469b18470632d1479020008',
     is_dictionary_verified: true
@@ -113,7 +113,7 @@ var projectList = {
     scoring_dataset_ids: ['scoring_dataset'],
     report_ids: ['train_classifier_evaluation', 'test_classifier_evaluation', 'univariate_supervised'],
     classifier_id: '5469b18470632d1479020016',
-    target_variable_id: '5469ce4f776f7200010c0000',
+    target_variable_id: '__variable-target',
     modalities_set_id: '5469b18470632d1479020003',
     preparation_rules_set_id: '5469b18470632d1479020008',
     is_dictionary_verified: true
@@ -130,7 +130,7 @@ var projectList = {
     scoring_dataset_ids: ['scoring_dataset'],
     report_ids: ['train_classifier_evaluation', 'test_classifier_evaluation', 'univariate_supervised'],
     classifier_id: '5469b18470632d1479020016',
-    target_variable_id: '5469ce4f776f7200010c0000',
+    target_variable_id: '__variable-target',
     modalities_set_id: '5469b18470632d1479020003',
     preparation_rules_set_id: '5469b18470632d1479020008',
     is_dictionary_verified: true
