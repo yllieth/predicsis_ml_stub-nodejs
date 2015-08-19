@@ -5,6 +5,7 @@ var chalk        = require('chalk');
 var users        = require('./routes/api/users');
 var projects     = require('./routes/api/projects');
 var datasets     = require('./routes/api/datasets');
+var data_files   = require('./routes/api/datafiles');
 var dictionaries = require('./routes/api/dictionaries');
 var models       = require('./routes/api/models');
 var jobs         = require('./routes/api/jobs');
@@ -100,6 +101,7 @@ app.use(function(req, res, next) {
 app.use('/users', users);
 app.use('/projects', projects);
 app.use('/datasets', datasets);
+app.use('/data_files', data_files);
 app.use('/dictionaries', dictionaries);
 app.use('/jobs', jobs);
 app.use('/modalities_sets', modalities_sets);

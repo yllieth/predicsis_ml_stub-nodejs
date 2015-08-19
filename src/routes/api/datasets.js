@@ -3,7 +3,6 @@
  */
 var express = require('express');
 var router = express.Router();
-var S3_URL = 'http://localhost:8005';
 var datasetList = {
   datasets: [
     {
@@ -22,13 +21,7 @@ var datasetList = {
       children_dataset_ids: [],
       dictionary_ids: [],
       generated_dictionaries_ids: [],
-      data_file: {
-        id: '54904b09776f720001650000',
-        filename: 'learning-dataset.csv',
-        type: 'S3',
-        size: 538296,
-        url: S3_URL + '/download/file/from/s3/learning-dataset.csv'
-      },
+      data_file_id: "__data_file_DS_learning-dataset",
       main_modality: null,
       classifier_id: null,
       dataset_id: null,
@@ -57,13 +50,7 @@ var datasetList = {
       sampling: 100,
       nb_of_lines: 50002,
       children_dataset_ids: ['learned_learning_dataset', 'tested_learning_dataset'],
-      data_file: {
-        id: '54904b09776f720001650000',
-        filename: 'learning-dataset.csv',
-        type: 'S3',
-        size: 538296,
-        url: S3_URL + '/download/file/from/s3/learning-dataset.csv'
-      },
+      data_file_id: "__data_file_DS_learning-dataset",
       main_modality: null,
       classifier_id: null,
       dataset_id: null,
@@ -97,13 +84,7 @@ var datasetList = {
       generated_dictionaries_ids: [],
       sampling: 70,
       nb_of_lines: null,
-      data_file: {
-        id: '54904b09776f720001650000',
-        filename: 'learned_learning-dataset.csv',
-        type: 'S3',
-        size: 538296,
-        url: S3_URL + '/download/file/from/s3/learned_learning-dataset.csv'
-      },
+      data_file_id: "__data_file_DS_learning-dataset",
       main_modality: null,
       classifier_id: null,
       dataset_id: null,
@@ -126,13 +107,7 @@ var datasetList = {
       generated_dictionaries_ids: [],
       sampling: -70,
       nb_of_lines: null,
-      data_file: {
-        id: '54904b09776f720001650000',
-        filename: 'tested_learning-dataset.csv',
-        type: 'S3',
-        size: 538296,
-        url: S3_URL + '/download/file/from/s3/tested_learning-dataset.csv'
-      },
+      data_file_id: "__data_file_DS_learning-dataset",
       main_modality: null,
       classifier_id: null,
       dataset_id: null,
@@ -155,13 +130,7 @@ var datasetList = {
       nb_of_lines: 50002,
       children_dataset_ids: [],
       dictionary_ids: [],
-      data_file: {
-        id: '54904b09776f720001650000',
-        filename: 'test-failure-on-dataset-deletion.csv',
-        type: 'S3',
-        size: 538296,
-        url: S3_URL + '/download/file/from/s3/test-failure-on-dataset-deletion.csv'
-      },
+      data_file_id: "__data_file_DS_learning-dataset",
       main_modality: null,
       classifier_id: null,
       dataset_id: null,
@@ -195,13 +164,7 @@ var datasetList = {
       sampling: 100,
       nb_of_lines: 50002,
       children_dataset_ids: [],
-      data_file: {
-        id: '54904d9c776f720001bc0700',
-        filename: 'scoring-dataset-input.csv',
-        type: 'S3',
-        size: 2689193,
-        url: S3_URL + '/download/file/from/s3/scoring-dataset-input.csv'
-      },
+      data_file_id: "__data_file_DS_learning-dataset",
       main_modality: null,
       classifier_id: null,
       dataset_id: null,
@@ -230,13 +193,7 @@ var datasetList = {
       sampling: 100,
       nb_of_lines: 50002,
       children_dataset_ids: [],
-      data_file: {
-        id: '53bcf4a970632d46122d0000',
-        filename: 'scoreset-output.csv',
-        type: 'S3',
-        size: 3089,
-        url: S3_URL + '/download/file/from/s3/scoreset-output.csv'
-      },
+      data_file_id: "__data_file_DS_learning-dataset",
       classifier_id: '5436431070632d15f4260000',
       dataset_id: 'scoring_dataset',
       modalities_set_id: '53fdfa7070632d0fc5030000',
