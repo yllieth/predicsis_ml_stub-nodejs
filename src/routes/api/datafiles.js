@@ -62,7 +62,7 @@ var dataFiles = {
     },
     {
       id: "__data_file_DS_scoring_dataset",
-      filename: "scoreset-output.txt",
+      filename: "scoreset-input.txt",
       type: 'S3',
       size: 53829364696,
       signed_url: { links: { self: 'https://api.predicsis.com/data_files/__data_file_DS_scoring_dataset/signed_url' } },
@@ -71,7 +71,7 @@ var dataFiles = {
     },
     {
       id: "__data_file_DS_scoreset",
-      filename: "test-failure-on-dataset-deletion.csv",
+      filename: "scoreset-output.csv",
       type: 'S3',
       size: 561,
       signed_url: { links: { self: 'https://api.predicsis.com/data_files/__data_file_DS_scoreset/signed_url' } },
@@ -98,9 +98,9 @@ router.get('/', function(req, res) {
 router.get('/:data_file_id', function(req, res) {
   var dataFile = dataFiles.data_files.filter(function(dataFile) {
     return dataFile.id === req.params.data_file_id;
-  });
+  })[0];
 
-  res.status(200).json(dataFile);
+  res.status(200).json({data_file: dataFile});
 });
 
 // GET single signed url
