@@ -5,7 +5,7 @@ var express = require('express');
 var router = express.Router();
 var o2x = require('object-to-xml');
 
-router.post('/file/to/s3', function(req, res) {
+router.put('/file/to/s3', function(req, res) {
 
     var content = '';
 
