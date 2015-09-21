@@ -12,8 +12,14 @@ var dictionary = {
     updated_at: '2014-05-02T15:27:37.687Z',
     name: 'API Contest',
     description: 'Dictionnary generated from dataset built for API Contest',
-    user_id: '5363b25c687964476d000000',
-    dataset_id: '53c7dea470632d3417020000',
+    user_id: '__user-john-doe',
+    dataset_id: 'learning_dataset_with_model',
+    dataset_ids: [
+      'learned_learning_dataset',
+      'tested_learning_dataset',
+      'learned_learning_dataset',
+      'tested_learning_dataset'
+    ],
     variable_ids: [
       "__variable-target",
       "__variable-continuous",

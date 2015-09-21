@@ -6,6 +6,16 @@ var express = require('express');
 var router = express.Router();
 var _ = require('lodash-contrib');
 
+var user = {
+  user: {
+    id: '__user-john-doe',
+    created_at: '2014-07-18T06:40:20.845Z',
+    updated_at: '2014-07-18T06:40:20.847Z',
+    name: 'John Doe',
+    email: 'john.doe@example.org'
+  }
+};
+
 router.post('/', function(req, res) {
   var name = _.getPath(req, 'body.user.name');
   if ('fail' === name) {
@@ -13,28 +23,12 @@ router.post('/', function(req, res) {
       msg: 'fake server refused the request because name was : ' + name,
     });
   } else {
-    res.status(200).json({
-      'user': {
-        'id': '5347b31750432d45a5020000',
-        'created_at': '2014-07-18T06:40:20.845Z',
-        'updated_at': '2014-07-18T06:40:20.847Z',
-        'name': 'John Doe',
-        'email': 'john.doe@example.org'
-      }
-    });
+    res.status(200).json(user);
   }
 });
 
 router.get('/me', function(req, res) {
-  res.status(200).json({
-    'user': {
-      'id': '5347b31750432d45a5020000',
-      'created_at': '2014-07-18T06:40:20.845Z',
-      'updated_at': '2014-07-18T06:40:20.847Z',
-      'name': 'John Doe',
-      'email': 'john.doe@example.org'
-    }
-  });
+  res.status(200).json(user);
 });
 
 router.post('/password', function(req, res) {
