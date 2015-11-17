@@ -6,7 +6,7 @@ var express = require('express');
 var router = express.Router();
 
 
-router.get('/authorize', function(req, res) {
+router.post('/tokens', function(req, res) {
 
   /*
    * error case if :
@@ -76,6 +76,10 @@ router.get('/authorize', function(req, res) {
     });
   }
 
+});
+
+router.delete('/tokens/:id', function(req, res) {
+  res.status(200).json({ redirectUrlAfterLogout: '/app/' });
 });
 
 

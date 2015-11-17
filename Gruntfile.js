@@ -23,14 +23,6 @@ module.exports = function(grunt) {
           hostname:'0.0.0.0'
         }
       },
-      oauth: {
-        options: {
-          server: 'src/stubbed-identity.js',
-          port: 8004,
-          showStack: true,
-          hostname:'0.0.0.0'
-        }
-      },
       s3: {
         options: {
           server: 'src/stubbed-s3.js',
