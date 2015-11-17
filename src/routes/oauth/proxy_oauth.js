@@ -66,7 +66,17 @@ router.post('/tokens', function(req, res) {
         expires_in: 1
       });
     }, 2000);
-  } else {
+  }/*
+   * SSO request (e.g. with Shibboleth)
+   */
+  else if (req.headers.authorization === undefined) {
+    // Change it to 200 + token to simulate SSO authenticated request
+    res.status(401).json({
+      isSSO: false,
+      authURL: 'http://uqac.ca'
+    });
+  }
+  else {
     res.status(200).json({
       // nominal case, all values are realistic
       access_token: 'd75d2750e04ab0c3c6f44a20271496098600d22e602a6e002deacfa5b07be6c5',
