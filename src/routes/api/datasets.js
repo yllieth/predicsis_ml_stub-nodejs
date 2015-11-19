@@ -8,6 +8,7 @@ var datasetList = {
     {
       // learning dataset (just after upload)
       id: 'learning_dataset',
+      type: 'uploaded_dataset',
       created_at: '2014-12-14T15:09:08.112Z',
       updated_at: '2014-12-14T15:08:57.970Z',
       name: 'Learning dataset',
@@ -37,6 +38,7 @@ var datasetList = {
     {
       // learning dataset (after model generation)
       id: 'learning_dataset_with_model', // must be different to support track_by attribute
+      type: 'uploaded_dataset',
       created_at: '2014-12-15T15:09:08.112Z',
       updated_at: '2014-12-15T15:12:48.082Z',
       name: 'Learning dataset (complete)',
@@ -71,6 +73,7 @@ var datasetList = {
     {
       // splitted learning dataset -> learned part
       id: 'learned_learning_dataset',
+      type: 'subset',
       created_at: '2014-12-16T15:09:08.112Z',
       updated_at: '2014-12-16T15:08:57.970Z',
       name: 'learned_Learning dataset',
@@ -94,6 +97,7 @@ var datasetList = {
     {
      // splitted learning dataset -> tested part
       id: 'tested_learning_dataset',
+      type: 'subset',
       created_at: '2014-12-17T15:09:08.112Z',
       updated_at: '2014-12-17T15:08:57.970Z',
       name: 'tested_Learning dataset',
@@ -117,6 +121,7 @@ var datasetList = {
     {
       // only for testing dataset deletion
       id: 'fail',
+      type: 'uploaded_dataset',
       created_at: '2014-12-18T15:09:08.112Z',
       updated_at: '2014-12-18T15:12:48.082Z',
       name: 'Learning dataset (test failure on dataset deletion)',
@@ -151,6 +156,7 @@ var datasetList = {
     {
       // scoring dataset (just after upload)
       id: 'scoring_dataset',
+      type: 'uploaded_dataset',
       created_at: '2014-12-19T15:20:00.656Z',
       updated_at: '2014-12-19T15:19:57.107Z',
       name: 'Scoring dataset (input)',
@@ -180,6 +186,7 @@ var datasetList = {
     {
       // scoreset
       id: 'scoreset',
+      type: 'scoreset',
       created_at: '2014-12-20T15:33:23.043Z',
       updated_at: '2014-12-20T15:33:23.043Z',
       name: 'Scoreset (output)',
@@ -211,6 +218,7 @@ var datasetList = {
   ]
 };
 var _dataset = {dataset: datasetList.datasets[0]};
+var _scoreset = {dataset: datasetList.datasets[6]};
 
 router.get('/', function(req, res) {
   setTimeout(function() {res.status(200).json(datasetList);}, 2000);
@@ -242,19 +250,16 @@ router.get('/:id', function(req, res) {
 });
 
 router.post('/', function(req, res) {
-  var dataset = JSON.parse(JSON.stringify(_dataset));
-  dataset.dataset.id = '__uploadedDataset';
-
   if(req.body.dataset.dataset_id) {
     //apply a model
     if(req.body.dataset.dataset_id === 'fail') {
       res.status(500).send();
     } else {
-      dataset.dataset.classifier_id = '5436431070632d15f4260000';
-      dataset.dataset.dataset_id = '53a492e870632d6ec1000000';
-      setTimeout(function() { res.status(201).json(dataset); }, 2000);
+      setTimeout(function() { res.status(201).json(_scoreset); }, 2000);
     }
   } else {
+    var dataset = JSON.parse(JSON.stringify(_dataset));
+    dataset.dataset.id = '__uploadedDataset';
     dataset.dataset.name = req.body.dataset.name;
     dataset.dataset.created_at = new Date().toISOString();
 
