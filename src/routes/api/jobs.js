@@ -16,10 +16,10 @@ router.get('/:id', function(req, res) {
         'action': 'Generate dictionary',
         'user_id': '5363b25c687964476d000000',
         'status': 'failed',
-        'error': {
+        'errors': [{
           'message': 'An internal server error occured',
           'status': 500
-        },
+        }],
         'runnable_id': '5363b7fc6879644ae7010000'
       }});
     }, 600);
@@ -32,7 +32,7 @@ router.get('/:id', function(req, res) {
         'action': 'Generate dictionary',
         'user_id': '5363b25c687964476d000000',
         'status': 'processing',
-        'error': null,
+        'errors': [],
         'runnable_id': '5363b7fc6879644ae7010000'
       }});
     }, 600);
@@ -45,7 +45,7 @@ router.get('/:id', function(req, res) {
         'action': 'Generate dictionary',
         'user_id': '5363b25c687964476d000000',
         'status': 'completed',
-        'error': null,
+        'errors': [],
         'runnable_id': '5363b7fc6879644ae7010000'
       }});
     }, 600);
